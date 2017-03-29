@@ -5,8 +5,8 @@ Built using NDK, cmake and Andorid studio with gradle 2.3.0.
 
 Based on naman14 work.
 
-##Gradle dependency
-####build.gradle (project)
+## Gradle dependency
+#### build.gradle (project)
 ```gradle
 allprojects {
 		repositories {
@@ -15,19 +15,19 @@ allprojects {
 		}
 	}
 ```
-####app/build.gradle
+#### app/build.gradle
 ```gradle
 dependencies {
 	        compile 'com.github.NorthernCaptain:TAndroidLame:1.1'
 	}
 ```	
 
-#Usage
+# Usage
 
 ```java
 AndoridLame androidLame = new AndroidLame(); //everything set to defaults
 ```
-#####or
+##### or
 
 ```java
 LameBuilder builder = new LameBuilder()
@@ -52,13 +52,13 @@ LameBuilder builder = new LameBuilder()
 AndroidLame androidLame = builder.build(); //use this
 AndroidLame androidLame = new AndroidLame(builder); //or this
 ```
-##Building with Android studio
+## Building with Android studio
 
 Import the project and use gradle version 2.3.0 or higher.
 
-##Documentation
+## Documentation
 
-##LameBuilder
+## LameBuilder
 
 LameBuilder is a wrapper around the extra initialisation parameters in Lame.
 
@@ -98,7 +98,7 @@ If using ABR, use `setAbrBitrate` to set the mean bitrate in kbps, value is igno
 
 **setId3...** - to set id3 tags
 
-##AndroidLame  
+## AndroidLame  
 A wrapper class for actual native implementation and encoding    
 
 `encode(short[] buffer_l, short[] buffer_r,  
@@ -114,7 +114,7 @@ A wrapper class for actual native implementation and encoding
 `lameFlush(byte[] mp3buf);`  
   flushes the intenal PCM buffers, and returns the final mp3 frames, will also write id3v1 tags (if any) into the bitstream    returns number of bytes output to mp3buf    
   
-##Mp3Recorder
+## Mp3Recorder
 Class provides simplified use of AndroidLame and AudioRecord together for recording audio from mic into MP3 file.
 
 `recorder = Mp3Recorder(File);`
