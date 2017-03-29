@@ -141,7 +141,7 @@ public class EncodeActivity extends AppCompatActivity {
 
         short[] buffer_l = new short[CHUNK_SIZE];
         short[] buffer_r = new short[CHUNK_SIZE];
-        byte[] mp3Buf = new byte[CHUNK_SIZE];
+        byte[] mp3Buf = new byte[(int) (7200 + buffer_l.length * 2 * 1.25)];
 
         int channels = waveReader.getChannels();
 

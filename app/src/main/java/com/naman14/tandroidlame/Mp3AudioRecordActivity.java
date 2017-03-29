@@ -37,7 +37,7 @@ import java.io.IOException;
 public class Mp3AudioRecordActivity extends AppCompatActivity {
 
     int minBuffer;
-    int inSamplerate = 8000;
+    int inSamplerate = 44100;
 
     String filePath = Environment.getExternalStorageDirectory() + "/testrecord.mp3";
 
@@ -115,11 +115,11 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        addLog("Initialising Andorid Lame");
+        addLog("Initialising Android Lame");
         androidLame = new LameBuilder()
                 .setInSampleRate(inSamplerate)
                 .setOutChannels(1)
-                .setOutBitrate(32)
+                .setOutBitrate(64)
                 .setOutSampleRate(inSamplerate)
                 .build();
 
@@ -131,7 +131,7 @@ public class Mp3AudioRecordActivity extends AppCompatActivity {
 
         while (isRecording) {
 
-            addLog("reading to short array buffer, buffer sze- " + minBuffer);
+            addLog("reading to short array buffer, buffer size= " + minBuffer);
             bytesRead = audioRecord.read(buffer, 0, minBuffer);
             addLog("bytes read=" + bytesRead);
 

@@ -1,34 +1,44 @@
-apply plugin: 'com.android.model.library'
+apply plugin: 'com.android.library'
 
-model {
-    android {
-        compileSdkVersion 23
-        buildToolsVersion "23.0.2"
+android {
+    compileSdkVersion 23
+    buildToolsVersion "25.0.2"
 
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 11
+        versionName "1.1"
         ndk {
             moduleName "androidlame"
-            ldLibs.add("log")
-            CFlags.add("-DSTDC_HEADERS")
         }
-
-        defaultConfig {
-            minSdkVersion.apiLevel 16
-            targetSdkVersion.apiLevel 23
-            versionCode 1
-            versionName "1.0"
-        }
-        buildTypes {
-            release {
-                minifyEnabled false
-                proguardFiles.add(file("proguard-rules.pro"))
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++14 -frtti -fexceptions -DSTDC_HEADERS"
+                cFlags "-DSTDC_HEADERS"
+                arguments "-DANDROID_TOOLCHAIN=gcc"
+                abiFilters 'x86', "armeabi-v7a", "armeabi", "arm64-v8a"
             }
         }
-
     }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles.add(file("proguard-rules.pro"))
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path 'jni/CMakeLists.txt'
+        }
+    }
+
 }
 
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.1'
+    testCompile 'junit:junit:4.12'
 }
